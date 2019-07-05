@@ -206,8 +206,11 @@ while True:
 	cv2.putText(frame, str(counter), (100,200), cv2.FONT_HERSHEY_DUPLEX, 5.0, (0, 255, 255), 10)
 	# counter += 1
 
+	# stream video
+	cv2.imshow('Detection', frame)
+
 	# saves image file
-	cv2.imwrite("output/frame-{}.png".format(frameIndex), frame)
+	#cv2.imwrite("output/frame-{}.png".format(frameIndex), frame)
 
 	# check if the video writer is None
 	if writer is None:
@@ -224,10 +227,13 @@ while True:
 				elap * total))
 
 	# write the output frame to disk
-	writer.write(frame)
+	#writer.write(frame)
 
 	# increase frame index
 	frameIndex += 1
+
+	if cv2.waitKey(1) & 0xFF == ord('q'):
+		break
 
 	#if frameIndex >= 4000: # limits the execution to the first 4000 frames
 	#	print("[INFO] cleaning up...")
